@@ -1,9 +1,19 @@
-import React from 'react'
-
+import { Container } from 'react-bootstrap';
+// import Header from './Components/Header';
+// import Footer from './Components/Footer';
+import { Outlet } from 'react-router-dom';
 const App = () => {
   return (
-    <div>Task Manager</div>
-  )
-}
+    <>
+      {/* <Header /> */}
+      <main className="py-3 bg-success ">
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
+      {/* <Footer /> */}
+    </>
+  );
+};
 
-export default App
+export default App;
