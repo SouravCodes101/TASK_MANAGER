@@ -2,8 +2,10 @@ import express from 'express';
 import connectDb from './config/db.js';
 import dotenv from 'dotenv';
 dotenv.config();
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import listRoutes from './routes/listRoutes.js';
-import tasksRoutes from "./routes/taskRoutes.js"
+import tasksRoutes from './routes/taskRoutes.js';
+
 connectDb();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -20,7 +22,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/lists', listRoutes);
-app.use('/lists', tasksRoutes)
+app.use('/lists', tasksRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
